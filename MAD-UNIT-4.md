@@ -251,3 +251,170 @@
 - To perform IPC, your application must bind to a service, using `bindService()`.
   - A `Service` is an application component that can perform long-running operations in the background, and it does not provide a user interface.
   - Another application component can start a service, and it continues to run in the background even if the user switches to another application.
+
+# Working with Graphics and Animation
+
+## Working with Graphics
+
+### Drawable
+
+- A drawable resource is a general concept for a graphic that can 
+
+  - be drawn to the screen (and which you can retrieve with APIs such as `getDrawable(int)`)
+
+    ​	or 
+
+  - apply to another XML resource with attributes such as `android:drawable` and `android:icon`. 
+
+- There are several different types of drawables:
+
+- [Bitmap File](https://developer.android.com/guide/topics/resources/drawable-resource.html#Bitmap)
+
+  ​	A bitmap graphic file (`.png`, `.jpg`, or `.gif`). Creates a `BitmapDrawable`.
+
+- [Nine-Patch File](https://developer.android.com/guide/topics/resources/drawable-resource.html#NinePatch) 
+
+  ​	A PNG file with stretchable regions to allow image resizing based on content. Certain parts of the image resize, while other simply stretch like vectors. 	
+
+- [Layer List](https://developer.android.com/guide/topics/resources/drawable-resource.html#LayerList)
+
+    A Drawable that manages an array of other Drawables. These are drawn in array order, so the element with the largest index is be drawn on 	top. Creates a `LayerDrawable`.
+
+- [State List](https://developer.android.com/guide/topics/resources/drawable-resource.html#StateList)
+
+    ​	  An XML file that references different bitmap graphics for different states (for example, to use a different image when a button is pressed). Creates a `StateListDrawable`.
+
+- [Transition Drawable](https://developer.android.com/guide/topics/resources/drawable-resource.html#Transition)
+
+      An XML file that defines a drawable that can cross-fade between two drawable resources. Creates a `TransitionDrawable`.
+
+- [Shape Drawable](https://developer.android.com/guide/topics/resources/drawable-resource.html#Shape)
+
+      An XML file that defines a geometric shape, including colors and gradients. Creates a `ShapeDrawable`.
+
+### ShapeDrawable
+
+This is a generic shape defined in XML.
+
+Syntax as follows:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape=["rectangle" | "oval" | "line" | "ring"] >
+    <corners
+        android:radius="integer"
+        android:topLeftRadius="integer"
+        android:topRightRadius="integer"
+        android:bottomLeftRadius="integer"
+        android:bottomRightRadius="integer" />
+    <gradient
+        android:angle="integer"
+        android:centerX="float"
+        android:centerY="float"
+        android:centerColor="integer"
+        android:endColor="color"
+        android:gradientRadius="integer"
+        android:startColor="color"
+        android:type=["linear" | "radial" | "sweep"]
+        android:useLevel=["true" | "false"] />
+    <padding
+        android:left="integer"
+        android:top="integer"
+        android:right="integer"
+        android:bottom="integer" />
+    <size
+        android:width="integer"
+        android:height="integer" />
+    <solid
+        android:color="color" />
+    <stroke
+        android:width="integer"
+        android:color="color"
+        android:dashWidth="integer"
+        android:dashGap="integer" />
+</shape>
+```
+
+Example:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <stroke
+        android:width="2dp"
+        android:color="#FFFFFFFF" />
+    <gradient
+        android:endColor="#DDBBBBBB"
+        android:startColor="#DD777777"
+        android:angle="90" />
+    <corners
+        android:bottomRightRadius="7dp"
+        android:bottomLeftRadius="7dp"
+        android:topLeftRadius="7dp"
+        android:topRightRadius="7dp" />
+</shape>
+```
+
+## Hardware Acceleration
+
+- Beginning in Android 3.0 (API level 11), the Android 2D rendering pipeline supports hardware acceleration, **meaning that all drawing operations** that are performed on a `View`'s canvas **use the GPU**. 
+
+- Because of the increased resources required to enable hardware acceleration, your app will consume more RAM.
+
+- You can control hardware acceleration at the following levels:
+
+  - Application
+
+    - In your Android manifest file, add the following attribute to the [``](https://developer.android.com/guide/topics/manifest/application-element.html) tag to enable hardware acceleration for your entire application:
+
+      ```xml
+      <application android:hardwareAccelerated="true" ...>
+      ```
+
+  - Activity
+
+    - If your application does not behave properly with hardware acceleration turned on globally, you can control it for individual activities as well. 
+
+    - To enable or disable hardware acceleration at the activity level, 
+
+      ```xml
+      <application android:hardwareAccelerated="true">
+          <activity ... />
+          <activity android:hardwareAccelerated="false" />
+      </application>
+      ```
+
+      ​
+
+  - Window
+
+    - If you need even more fine-grained control, you can enable hardware acceleration for a given window with the following code:
+
+      ```java
+      getWindow().setFlags(
+          WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+          WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+      ```
+
+      ​
+
+  - View
+
+    - You can disable hardware acceleration for an individual view at runtime with the following code:
+
+      ```java
+      myView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+      ```
+
+### Hardware Accelerated Drawing Model
+
+- Instead of executing the drawing commands immediately, the Android system records them inside display lists
+- They contain the output of the view hierarchy’s drawing code. 
+- Another optimization is that the Android system only needs to record and update display lists for views marked **dirty** by an `invalidate()` call. 
+- Views that have not been invalidated can be redrawn simply by re-issuing the previously recorded display list. 
+- Using display lists also benefits animation performance because setting specific properties, such as alpha or rotation, does not require invalidating the targeted view (it is done automatically). 
+- This optimization also applies to views with display lists (any view when your application is hardware accelerated.)
