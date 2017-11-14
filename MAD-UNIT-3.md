@@ -255,4 +255,27 @@
   }
   ```
 
-  ​
+# Using Multimedia
+
+The Android multimedia framework includes support for playing variety of common media types, so that you can easily integrate audio, video and images into your applications. You can play audio or video from media files stored in your application's resources (raw resources), from standalone files in the filesystem, or from a data stream arriving over a network connection, all using `MediaPlayer` APIs.
+
+## Playing Audio
+
+- To play audio, you must first create an object of the MediaPlayer class...
+
+  ```java
+  MediaPlayer mp = new MediaPlayer();
+  ```
+
+- Set the file path, prepare the source 9decoding, buffering, etc), and then start playing!
+
+  ```java
+  try {
+          mp.setDataSource(path + File.separator + fileName);
+          mp.prepare();
+          mp.start();
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+  ```
+
