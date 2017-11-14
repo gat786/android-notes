@@ -74,3 +74,93 @@
   //CALL
   ```
 
+## Wi-Fi
+
+- Android allows applications to access to view the access the state of the wireless connections at very low level. 
+- Application can access almost all the information of a wifi connection.
+- The information that an application can access includes 
+  - connected network's link speed
+  - IP address
+  - negotiation state
+  - etc
+- Applications can also 
+  - scan,
+  - add,
+  - save,
+  - and terminate Wi-Fi connections.
+- Android provides **WifiManager** API to manage all aspects of WIFI connectivity. 
+
+### WiFiManager
+
+- We can create WifiManager object using
+
+  ```java
+  WifiManager mainWifiObj;
+  mainWifiObj = (WifiManager) getSystemService(Context.WIFI_SERVICE); 
+  ```
+
+- To scan for Wi-Fi networks, use the `startScan()` method of the WifiManager object. 
+
+- It returns ScanResult objects.
+
+- You can access any object via the `get` method of the List class.
+
+  ```java
+  List<ScanResult> wifiScanList = mainWifiObj.getScanResults();
+  String data = wifiScanList.get(0).toString();
+  ```
+
+- To connect a a Wi-Fi network, first create it's configuration.
+
+  ```java
+  WifiConfiguration conf = new WifiConfiguration();
+  //create conf object
+
+  conf.SSID = "\"" + networkSSID + "\"";
+  //networkSSID is the name of the network
+
+  conf.preSharedKey = "\""+ networkPass +"\"";
+  //add a password to the conf object
+
+  mainWifiObj.addNetwork(conf);
+  //tell android to save this configuration
+  ```
+
+- Now, to actually connect to the network, we need to retrieve a list of configured networks.
+
+  ```java
+  List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
+    
+  }
+  ```
+
+- Loop through, to find the network we configured earlier...
+
+  ```java
+  List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
+
+  for( WifiConfiguration i : list ) {
+      if(i.SSID != null && i.SSID.equals("\"" + networkSSID + "\"")) {
+           
+      }           
+   }
+  ```
+
+- Disconnect from any existing networks, enable the one we want, and connect again.
+
+  ```java
+  List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
+
+  for( WifiConfiguration i : list ) {
+      if(i.SSID != null && i.SSID.equals("\"" + networkSSID + "\"")) {
+        
+           wifiManager.disconnect();
+           wifiManager.enableNetwork(i.networkId, true);
+           wifiManager.reconnect();               
+
+           break;
+        
+      }           
+   }
+  ```
+
