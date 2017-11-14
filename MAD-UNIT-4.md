@@ -418,3 +418,170 @@ Example:
 - Views that have not been invalidated can be redrawn simply by re-issuing the previously recorded display list. 
 - Using display lists also benefits animation performance because setting specific properties, such as alpha or rotation, does not require invalidating the targeted view (it is done automatically). 
 - This optimization also applies to views with display lists (any view when your application is hardware accelerated.)
+
+## Animations
+
+- The Android framework provides two animation systems: 
+  - property animation  
+  - view animation. 
+- Both animation systems are viable options, but the property animation system, in general, is the preferred method to use.
+  - This is because it is more flexible and offers more features. 
+- In addition to these two systems, you can utilize Drawable animation, which allows you to load drawable resources and display them one frame after another.
+
+### Property Animation
+
+- The property animation system is a robust framework that allows you to animate almost anything. 
+
+- You can define an animation to change any object property over time, regardless of whether it draws to the screen or not. 
+
+- A property animation changes a property's (a field in an object) value over a specified length of time. 
+
+- To animate something, you specify the object property that you want to animate, *(such as an object's position on the screen)*, how long you want to animate it for, and what values you want to animate between.
+
+- Eg:
+
+  - Set the animation properties in xml:
+
+    ```xml
+    <animator xmlns:android="http://schemas.android.com/apk/res/android"
+        android:duration="1000"
+        android:valueType="floatType"
+        android:valueFrom="0f"
+        android:valueTo="-100f" />
+    ```
+
+  - Animate!
+
+    ```java
+    ValueAnimator xmlAnimator = (ValueAnimator) AnimatorInflater.loadAnimator(this,
+            R.animator.animator);
+    //LOAD FROM XML FILE
+
+    xmlAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        @Override
+        public void onAnimationUpdate(ValueAnimator updatedAnimation) {
+            float animatedValue = (float)updatedAnimation.getAnimatedValue();
+            textView.setTranslationX(animatedValue);
+          //MOVE TEXTVIEW TO NEW VALUE
+        }
+    });
+    //ABOVE CODE SETS UP THE ANIMATION
+
+    xmlAnimator.start();
+    //THIS IS THE LINE THAT ACTUALLY STARTS THE ANIMATION
+    ```
+
+### View Animation
+
+- You can use the view animation system to perform **tweened animation** on Views. 
+
+- Tween animation calculates the animation with information such as the start point, end point, size, rotation, and other common aspects of an animation.
+
+- A tween animation can perform a series of simple transformations (position, size, rotation, and transparency) on the contents of a View object. 
+
+  - So, if you have a `TextView` object, you can move, rotate, grow, or shrink the text. 
+  - If it has a background image, the background image will be transformed along with the text. 
+
+- The `animation package` provides all the classes used in a tween animation.
+
+- Eg:
+
+  - xml file:
+
+    ```xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <set xmlns:android="http://schemas.android.com/apk/res/android">
+
+       <rotate xmlns:android="http://schemas.android.com/apk/res/android"
+          android:fromDegrees="0"
+          android:toDegrees="360"
+          android:pivotX="50%"
+          android:pivotY="50%"
+          android:duration="5000" >
+       </rotate>
+       
+       <rotate xmlns:android="http://schemas.android.com/apk/res/android"
+          android:startOffset="5000"
+          android:fromDegrees="360"
+          android:toDegrees="0"
+          android:pivotX="50%"
+          android:pivotY="50%"
+          android:duration="5000" >
+       </rotate>
+       
+    </set>
+    ```
+
+  - java code:
+
+    ```java
+    ImageView image = (ImageView)findViewById(R.id.imageView);
+    //THE THING THAT WILL SPIN ROUND ROUND
+
+     Animation animation = AnimationUtils.loadAnimation(
+       getApplicationContext(), R.anim.myanimation);
+    //LOAD THE ANIMATION FROM XML
+
+    image.startAnimation(animation);
+    //START ANIMATION
+    ```
+
+
+
+### Drawable Animation
+
+- Drawable animation lets you load a series of Drawable resources one after another to create an animation. 
+
+- This is a traditional animation in the sense that it is created with a sequence of different images, played in order, like a roll of film. 
+
+- The XML file consists of 
+
+  - an `<animation-list>` element as the root node 
+  - a series of child `<item>` nodes that each define a frame: 
+    - Each frame is a drawable resource for the frame 
+  - and the frame duration. 
+
+- Eg xml:
+
+  ```xml
+  <animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+      android:oneshot="true">
+      <item android:drawable="@drawable/rocket_thrust1" android:duration="200" />
+      <item android:drawable="@drawable/rocket_thrust2" android:duration="200" />
+      <item android:drawable="@drawable/rocket_thrust3" android:duration="200" />
+  </animation-list>
+  ```
+
+- This animation runs for just three frames. 
+
+- By setting the `android:oneshot` attribute of the list to **true**, it will cycle just once then stop and hold on the last frame. 
+
+- If it is set **false** then the animation will loop. 
+
+- Eg java:
+
+  ```java
+  ImageView rocketImage = (ImageView) findViewById(R.id.rocket_image);
+  //HAVE AN IMAGEVIEW
+
+  rocketImage.setBackgroundResource(R.drawable.rocket_thrust);
+  //SET THE BACKGROUND TO USE THE XML FILE WE CREATED ABOVE
+
+  AnimationDrawable rocketAnimation;
+  rocketAnimation = (AnimationDrawable) rocketImage.getBackground();
+  //CREATE OUR ANIMATION OBJECT
+  //AND LINK IT TO THE IMAGEVIEW
+
+  rocketAnimation.start();
+  //ANIMAAAAATTTTEEEEEE
+  ```
+
+
+
+---
+
+> **Excluded topics**: Cloud to Device Messaging using Google Firebase
+> Cloud Messaging, Publishing the App, Best Practices for Performance.
+>
+> Refer to CC's notes, or ask Google bhaiyya.
+
