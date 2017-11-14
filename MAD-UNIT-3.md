@@ -279,3 +279,47 @@ The Android multimedia framework includes support for playing variety of common 
       }
   ```
 
+## Recording Audio
+
+- To record audio, one must first declare the following permission:
+
+  ```java
+  <uses-permission android:name="android.permission.RECORD_AUDIO" />
+  ```
+
+- Then, create a MediaRecorder object
+
+  ```java
+  MediaRecorder myAudioRecorder = new MediaRecorder();
+  ```
+
+- The following parameters of the object need to be set:
+
+  ```java
+  myAudioRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+  //MIC SE RECORD KARNA HAI
+
+  myAudioRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+  //.3GP FILE BANEGI
+
+  myAudioRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
+  //SYNTAX HAI. KARNA PADTA HAI.
+
+  myAudioRecorder.setOutputFile(outputFile);
+  //KONSI FILE MEIN SAVE HOGA. THE PARAMETER IS A JAVA File OBJECT
+  ```
+
+- Once set, we can prepare the hardware to record audio, and then start recording
+
+  ```java
+  myAudioRecorder.prepare();
+  myAudioRecorder.start();
+  ```
+
+- Had enough? Stop the recording!
+
+  ```java
+  mediaRecorder.stop();
+  ```
+
+  ​
