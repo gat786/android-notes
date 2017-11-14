@@ -98,4 +98,64 @@
   emailIntent.putExtra(Intent.EXTRA_TEXT   , "Message Body");
   ```
 
+# Location Services
+
+## Displaying Maps
+
+- In order to display maps, we must use the Google Play Services API.
+
+- To do that, first, download and enable the Google Play Services API in your Android SDK manager.
+
+- Then, visit the Google Maps API website, login, and obtain an API key. 
+
+- Then, add the Google Maps fragmen to your activity
+
+  ```xml
+  <fragment
+     android:id="@+id/map"
+     android:name="com.google.android.gms.maps.MapFragment"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"/>
+  ```
+
+- Thereafter, specify the required permissions in the manifest file:
+
+  ```xml
+  <!--Permissions-->
+
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="com.google.android.providers.gsf.permission.
+     READ_GSERVICES" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  ```
+
+- Then add the API key to the manifest as well.
+
+  ```xml
+  <!--Google MAP API key-->
+
+  <meta-data
+     android:name="com.google.android.maps.v2.API_KEY"
+     android:value="AIzaSyDKymeBXNeiFWY5jRUejv6zItpmr2MVyQ0" />  
+  ```
+
+- Other optional customizations:
+
+  ```java
+  googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+  googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+  googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+  googleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+  //SET MAP TYPE
+
+  googleMap.getUiSettings().setZoomGesturesEnabled(true);
+  //ENABLE OR DISABLE ZOOM
+
+  final LatLng ek_jagah = new LatLng(21 , 57);
+  Marker TP = googleMap.addMarker(new MarkerOptions()
+     .position(ek_jagah).title("Yeh Ek Jagah Hai")); 
+  //ADD A MARKER TO THE MAP
+  ```
+
   ​
