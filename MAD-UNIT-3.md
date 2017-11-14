@@ -322,4 +322,6 @@ The Android multimedia framework includes support for playing variety of common 
   mediaRecorder.stop();
   ```
 
-  ​
+---
+
+> Unit 3 is currently incomplete. Started with Unit IV as only few topics are left in this unit.
