@@ -205,3 +205,54 @@
 - For this, location services needs to enabled on the Android device.
 
 - Furthermore, on later android versions, the app needs to be granted the Location permission to use the GPS radio.
+
+## Geocoder
+
+- **Geocoding** is the process of **transforming** a **street address** or other description of a location **into a (latitude, longitude) coordinate**. 
+
+- **Reverse geocoding** is the process of transforming a **(latitude, longitude) coordinate** into a **(partial) address**. 
+
+- The amount of detail in a reverse geocoded location description may vary, 
+
+  - For example one might contain the full street address of the closest building, while another might contain only a city name and postal code. 
+
+- The Geocoder class requires a backend service that is not included in the core android framework.
+
+  ```java
+  import android.location.Geocoder;
+  ```
+
+- To use geocoding, the following code can be used:
+
+  ```java
+  Geocoder gc = new Geocoder(context);
+    if(gc.isPresent()){
+      
+      List<Address> list = 
+        gc.getFromLocationName(
+        “RD National College, Waterfield Road, Bandra, Mumbai, India”, 1);
+      
+      Address address = list.get(0);
+      double lat = address.getLatitude();
+      double lng = address.getLongitude();
+  }
+  ```
+
+- To use reverse GeoCoding, use the following code:
+
+  ```java
+  Geocoder gc = new Geocoder(context);
+    if(gc.isPresent()){
+      List<address> list = gc.getFromLocation(37.42279, -122.08506,1);
+      Address address = list.get(0);
+      StringBuffer str = new StringBuffer();
+      str.append(“Name: ” + address.getLocality() + “\n”);
+      str.append(“Sub-Admin Ares: ” + address.getSubAdminArea() + “\n”);
+      str.append(“Admin Area: ” + address.getAdminArea() + “\n”);
+      str.append(“Country: ” + address.getCountryName() + “\n”);
+      str.append(“Country Code: ” + address.getCountryCode() + “\n”);
+      String strAddress = str.toString();
+  }
+  ```
+
+  ​
