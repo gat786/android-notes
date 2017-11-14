@@ -1,23 +1,23 @@
-#History
+# History
 
 ## J2ME
 
   - Java 2 Platform, Micro Edition
   - A java platform designed for mobile development and personal assitants (PDAs)
   - Used Java K Virtual Machine
-##Blackberry Mobile
+## Blackberry Mobile
 
   - Smartphones designed by Research in Motion 
   - Very succesful at launch
   - Business oriented
   - Secure
-##Android
+## Android
 
   - Founded by Andy Rubin in Palo Alto, California
   - Acquired by Google in 2005
   - Originally intended for camera, later shifted to mobile
   - Currently over 2 billion monthly active users
-##Windows Mobile
+## Windows Mobile
 
   - Mobile OS by Microsoft
   - Initially called PocketPC 2000
@@ -26,7 +26,7 @@
 
 ---
 
-#Android Platform
+# Android Platform
 
 - Android is an open source, Linux-based software stack created for a wide array of devices and form factors. 
 
@@ -40,11 +40,11 @@
 
 - Currently over 2 billion monthly active users
 
-##Architecture
+## Architecture
 
 - ![architecture](./images/architecture.png)
 
-##Components
+## Components
 
 - Android applications are built using reusable components
 - They Are:
@@ -55,9 +55,9 @@
 
 ---
 
-#Android Tools
+# Android Tools
 
-##SDK
+## SDK
 
   - The Android SDK (software development kit) is a set of development tools used to develop applications for Android platform. The Android SDK includes the following:
     - Required libraries
@@ -69,7 +69,7 @@
   - Every time Google releases a new version of Android, a corresponding SDK is also released. 
   - To be able to write programs with the latest features, developers must download and install each version's SDK for the particular phone. 
   - The development platforms that are compatible with SDK include operating systems like Windows (XP or later), Linux (any recent Linux distribution) and Mac OS X (10.4.9 or later). The components of Android SDK can be downloaded separately. 
-##ADB:
+## ADB:
 
   - Android Debug Bridge (adb) is a versatile command-line tool that lets you communicate with a device. 
   - The adb command facilitates a variety of device actions, such as installing and debugging apps, and it provides access to a Unix shell that you can use to run a variety of commands on a device. 
@@ -77,7 +77,7 @@
     - **A client**, which sends commands. The client runs on your development machine. You can invoke a client from a command-line terminal by issuing an adb command.
     - **A daemon (adbd)**, which runs commands on a device. The daemon runs as a background process on each device.
     - **A server**, which manages communication between the client and the daemon. The server runs as a background process on your development machine.
-##Gradle:
+## Gradle:
 
   - Gradle is a build system used to build Android applications. 
   - The build system automatically takes all the source files (`.java` or `.xml`), then applies the appropriate tool (e.g. takes `java` class files and converts them to `dex` files), and groups all of them into one compressed file, our beloved APK.
@@ -90,9 +90,9 @@
 
 ---
 
-#Activities and Lifecycle, Fragments and Intents
+# Activities and Lifecycle, Fragments and Intents
 
-##Activities
+## Activities
 
   - Activities are one of the fundamental building blocks of apps on the Android platform. They serve as the entry point for a user's interaction with an app, and are also central to how a user navigates within an app (as with the Back button) or between apps (as with the Recents button).
 
@@ -154,7 +154,7 @@
 
 ---
 
-#Styles and Themes
+# Styles and Themes
 
 - A *style* is a collection of attributes that specify the look and format for a `View` or window. 
 
@@ -271,7 +271,7 @@
     - The system delivers various broadcasts for system events, such as when the system boots up or the device starts charging. 
     - You can deliver a broadcast to other apps by passing an `Intent` to `sendBroadcast()` or `sendOrderedBroadcast()`.
 
-##Types of Intents:
+## Types of Intents:
 
   - **Explicit intents**: 
     - Specify the component to start by name (the fully-qualified class name). 
