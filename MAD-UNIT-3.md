@@ -72,3 +72,30 @@
 
   ​
 
+
+## Sending Email
+
+- One can send emails on Android using implicit intents.
+
+- Implicit intents broadcast to all installed apps on the phone, the _intention_ to perform a certain action.
+
+- You will use **ACTION_SEND** action to launch an email client installed on your Android device. Following is simple syntax to create an intent with ACTION_SEND action.
+
+  ```java
+  Intent emailIntent = new Intent(Intent.ACTION_SEND);
+  ```
+
+- To send an email you need to 
+
+  - use setData() method to specify **mailto:** as URI
+  - use setType() method to set data type to **text/plain** 
+
+- Android has built-in support to add TO, SUBJECT, CC, TEXT etc. fields which can be attached to the intent before sending the intent to a target email client. 
+
+- ```java
+  emailIntent.putExtra(Intent.EXTRA_EMAIL  , new String[]{"Recipient"});
+  emailIntent.putExtra(Intent.EXTRA_SUBJECT, "subject");
+  emailIntent.putExtra(Intent.EXTRA_TEXT   , "Message Body");
+  ```
+
+  ​
