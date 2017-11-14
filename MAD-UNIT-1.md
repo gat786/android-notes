@@ -42,7 +42,7 @@
 
 ##Architecture
 
-- ![architecture](./architecture.png)
+- ![architecture](./images/architecture.png)
 
 ##Components
 
@@ -67,7 +67,7 @@
     - Sample source code
     - Tutorials for the Android OS
   - Every time Google releases a new version of Android, a corresponding SDK is also released. 
-  - To be able to write programs with the latest features, developers must download and install each version�s SDK for the particular phone. 
+  - To be able to write programs with the latest features, developers must download and install each version's SDK for the particular phone. 
   - The development platforms that are compatible with SDK include operating systems like Windows (XP or later), Linux (any recent Linux distribution) and Mac OS X (10.4.9 or later). The components of Android SDK can be downloaded separately. 
 ##ADB:
 
@@ -117,7 +117,7 @@
 
   - ###Life Cycle:
 
-    ![activity_lifecycle](./activity_lifecycle.png)
+    ![activity_lifecycle](./images/activity_lifecycle.png)
 
     - **onCreate()**
 
@@ -349,13 +349,13 @@
 - You can combine multiple fragments in a single activity to build a multi-pane UI and reuse a fragment in multiple activities. 
 - You can think of a fragment as a modular section of an activity, which has its own lifecycle, receives its own input events, and which you can add or remove while the activity is running (sort of like a "sub activity" that you can reuse in different activities).
 
-![fragments](./fragments.png)
+![fragments](./images/fragments.png)
 
 ## Life-Cycle of a Fragment:
 
 
 
-![fragment_lifecycle](./fragment_lifecycle.png)
+![fragment_lifecycle](./images/fragment_lifecycle.png)
 
 
 

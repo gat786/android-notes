@@ -10,7 +10,7 @@
 
 - The user interface for each component of your app is defined using a hierarchy of `View` and `ViewGroup` objects, as shown in the figure:
 
-  ![viewgroup_2x](./viewgroup_2x.png)
+  ![viewgroup_2x](./images/viewgroup_2x.png)
 
 
 
@@ -48,7 +48,7 @@ The *action bar* is a dedicated piece of real estate at the top of each screen t
 
 The action bar is split into four different functional areas that apply to most apps:
 
-![action_bar_basics](./action_bar_basics.png)
+![action_bar_basics](./images/action_bar_basics.png)
 
 1. **App Icon:** 
    - The app icon establishes your app's identity. 
@@ -68,7 +68,7 @@ The action bar is split into four different functional areas that apply to most 
 
 - CABs are most typically used for tasks that involve acting on selected data or text.
 
-  ![action_bar_cab](./action_bar_cab.png)
+  ![action_bar_cab](./images/action_bar_cab.png)
 
 - The selection CAB appears after a long press on a selectable data item triggers selection mode.
 
@@ -364,7 +364,7 @@ Some common Layouts are:
   </TableLayout>
   ```
 
-  ![table_layout](./table_layout.png)
+  ![table_layout](./images/table_layout.png)
 
 
 
@@ -522,7 +522,7 @@ Some common Layouts are:
 
 - A button consists of text or an icon (or both text and an icon) that communicates what action occurs when the user touches it.
 
-  ![button-types](./button-types.png)
+  ![button-types](./images/button-types.png)
 
 - Depending on whether you want a button with text, an icon, or both, you can create the button in your layout in three ways:
 
@@ -595,7 +595,7 @@ Some common Layouts are:
 
 - You should use radio buttons for optional sets that are mutually exclusive if you think that the user needs to see all available options side-by-side. 
 
-  ![radiobuttons](./radiobuttons.png)
+  ![radiobuttons](./images/radiobuttons.png)
 
 - To create each radio button option, create a `RadioButton` in your layout. 
 
@@ -663,7 +663,7 @@ Some common Layouts are:
 
 - Typically, you should present each checkbox option in a vertical list.
 
-  ![checkboxes](./checkboxes.png)
+  ![checkboxes](./images/checkboxes.png)
 
 - To create each checkbox option, create a `CheckBox` in your layout. 
 
@@ -730,7 +730,7 @@ Some common Layouts are:
 
 - You can add a basic toggle button to your layout with the `ToggleButton` object.
 
-  ![togglebutton](./togglebutton.png)
+  ![togglebutton](./images/togglebutton.png)
 
 - To detect when the user activates the button or switch, create an `CompoundButton.OnCheckedChangeListener` object and assign it to the button by calling `setOnCheckedChangeListener()`. 
 
@@ -899,7 +899,7 @@ Some common Layouts are:
 
 - Adapters in Android are a bridge between the Adapter View (e.g. ListView) and the underlying data for that view.
 
-  ![adapters-1-528x180](./adapters-1-528x180.png)
+  ![adapters-1-528x180](./images/adapters-1-528x180.png)
 
 - Adapters call the `getView()` method which returns a view for each item within the adapter view. The layout format and the corresponding data for an item within the adapter view is set in the `getView()` method. 
 
@@ -934,7 +934,7 @@ Some common Layouts are:
 
 - Touching the spinner displays a dropdown menu with all other available values, from which the user can select a new one.
 
-  ![spinner](/home/antimony/images/100_CFV5/spinner.png)
+  ![spinner](./images/spinner.png)
 
 - You can add a spinner to your layout with the `Spinner` object. 
 
@@ -1418,5 +1418,5 @@ Some common Layouts are:
   - Synchronizing application data with your server.
   - Loading data in your UI using a `CursorLoader`.
 
-  ![content-provider-tech-stack](./content-provider-tech-stack.png)
+  ![content-provider-tech-stack](./images/content-provider-tech-stack.png)
 
