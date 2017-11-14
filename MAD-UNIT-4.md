@@ -168,8 +168,8 @@
 
 # Processes and threads
 
-- When an application starts and it does not have any other components running, the Android system starts a new Linux process.
-- This process has a single thread of execution. 
+- When an **application starts** and it does not have any other components running, the Android system **starts** a **new Linux process**.
+- This process has a **single thread of execution**. 
 - By default, all components of the same application run in the same process and thread (called the "main" thread). 
 - If an application component starts and there already exists a process for that application (because another component from the application exists), then the component is started within that process and uses the same thread of execution. 
 - However, you can arrange for different components in your application to run in separate processes, and you can create additional threads for any process.
@@ -191,13 +191,13 @@
 
 ## Threads
 
-- When an application is launched, the system creates a thread of execution for the application, called "main." 
+- When an **application** is **launched**, the system **creates** a **thread** of execution for the application, called "**main**." 
 
-- This thread is very important because it is in charge of dispatching events to the user interface.
+- This thread is **very important** because it is in charge of dispatching events to the **user interface.**
 
--  As such, the main thread is also sometimes called the UI thread. 
+-  As such, the **main thread** is also sometimes **called** the **UI thread.** 
 
-- The system does *not* create a separate thread for each instance of a component. 
+- The system does ***not*** create a **separate** thread for **each instance** of a component. 
 
 - All components that run in the same process are instantiated in the UI thread
 
@@ -205,9 +205,9 @@
 
 - Consequently, methods that respond to system callbacks (such as `onCreate()`) always run in the UI thread of the process.
 
-- When your app performs intensive work in response to user interaction, this single thread model can yield poor performance
+- When your app performs **intensive work** in response to user interaction, this **single thread** model can yield **poor performance**.
 
-- Specifically, if everything is happening in the UI thread, performing long operations such as network access or database queries will block the whole UI. 
+- Specifically, **if everything is happening in the UI thread**, performing **long operations** such as network access or database queries **will block the whole UI.** 
 
   > **Extra GK:**
   >
@@ -241,12 +241,12 @@
 
 - Android offers a mechanism for **InterProcess Communication (IPC)** using **Remote Procedure Calls (RPCs)**.
 - RPCs basically let the activity, or any application component, call a method. 
-  - This method is executed in a different process (remotely), and the results are returned back to the caller activity/component.
+  - This method is executed in a different process (**remotely**), and the results are returned back to the caller activity/component.
 - This process 
-  - breaks down a method and its data to a level the operating system can understand, 
-  - transmits it from the local process and address space to the remote process and address space,
-  - then reassembles and reenacts the call there. 
-- Return values are then transmitted in the opposite direction. 
+  - **breaks down a method** and its **data** to a level the operating system can understand, 
+  - **transmits** it **from** the **local** process and address space **to** the **remote** process and address space,
+  - then **reassembles and reenacts the call** there. 
+- **Return values** are then **transmitted** in the **opposite direction.** 
 - Android provides all the code to perform these IPC transactions, the developer only needs to define and implement the RPC programming interface.
 - To perform IPC, your application must bind to a service, using `bindService()`.
   - A `Service` is an application component that can perform long-running operations in the background, and it does not provide a user interface.
