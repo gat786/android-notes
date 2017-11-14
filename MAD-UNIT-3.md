@@ -158,4 +158,50 @@
   //ADD A MARKER TO THE MAP
   ```
 
-  ​
+## Getting Location
+
+- To get location, we must declare permissions in the manifest.
+
+  ```xml
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+  ```
+
+- Then, in the java code, create a LocationManager
+
+  ```java
+  LocationManager locationManager = (LocationManager)
+  getSystemService(Context.LOCATION_SERVICE);
+  ```
+
+- Then, request the current co-ordinates.
+
+  ```java
+  LocationListener locationListener = new MyLocationListener();
+  locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
+  ```
+
+- Then, create a Listener class to retrieve the information.
+
+  ```java
+  private class MyLocationListener implements LocationListener {
+
+      @Override
+      public void onLocationChanged(Location loc) {
+        //THIS METHOD IS CALLED WHEN LOCATION IS CHANGED
+        
+              
+          Toast.makeText(
+                  getBaseContext(),
+                  "Location changed: Lat: " + loc.getLatitude() + " Lng: "
+                      + loc.getLongitude(), Toast.LENGTH_SHORT).show();
+          
+          
+      }
+  }
+  ```
+
+- This method can be used to retrieve co-ordinates using GPS.
+
+- For this, location services needs to enabled on the Android device.
+
+- Furthermore, on later android versions, the app needs to be granted the Location permission to use the GPS radio.
