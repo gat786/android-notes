@@ -67,7 +67,7 @@
     - Sample source code
     - Tutorials for the Android OS
   - Every time Google releases a new version of Android, a corresponding SDK is also released. 
-  - To be able to write programs with the latest features, developers must download and install each version’s SDK for the particular phone. 
+  - To be able to write programs with the latest features, developers must download and install each versionï¿½s SDK for the particular phone. 
   - The development platforms that are compatible with SDK include operating systems like Windows (XP or later), Linux (any recent Linux distribution) and Mac OS X (10.4.9 or later). The components of Android SDK can be downloaded separately. 
 ##ADB:
 
@@ -117,7 +117,7 @@
 
   - ###Life Cycle:
 
-    ![activity_lifecycle](/home/antimony/college/docs/Nisha mam/activity_lifecycle.png)
+    ![activity_lifecycle](./activity_lifecycle.png)
 
     - **onCreate()**
 
@@ -133,7 +133,7 @@
       - When the activity enters the Resumed state, it comes to the foreground, and then the system invokes the `onResume()` callback. 
       - This is the state in which the app interacts with the user. 
       - The app stays in this state until something happens to take focus away from the app. 
-      - Such an event might be, for instance, receiving a phone call, the user’s navigating to another activity, or the device screen’s turning off.
+      - Such an event might be, for instance, receiving a phone call, the userï¿½s navigating to another activity, or the device screenï¿½s turning off.
       - When an interruptive event occurs, the activity enters the *Paused* state, and the system invokes the `onPause()` callback.
     - **onPause()**
       - The system calls this method as the first indication that the user is leaving your activity (though it does not always mean the activity is being destroyed). 
@@ -349,13 +349,13 @@
 - You can combine multiple fragments in a single activity to build a multi-pane UI and reuse a fragment in multiple activities. 
 - You can think of a fragment as a modular section of an activity, which has its own lifecycle, receives its own input events, and which you can add or remove while the activity is running (sort of like a "sub activity" that you can reuse in different activities).
 
-![fragments](/home/antimony/college/docs/Nisha mam/fragments.png)
+![fragments](./fragments.png)
 
 ## Life-Cycle of a Fragment:
 
 
 
-![fragment_lifecycle](/home/antimony/college/docs/Nisha mam/fragment_lifecycle.png)
+![fragment_lifecycle](./fragment_lifecycle.png)
 
 
 
